@@ -20,7 +20,8 @@ export const CartSlice = createSlice({
     },
 
     removeItem: (state, action) => {
-      state.items = state.items.filter(item => item.name !== action.payload);
+      state.items = state.items.filter(item => item.name !== action.payload.name);
+
     },
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload; // Destructure the product name and new quantity from the action payload
@@ -30,11 +31,12 @@ export const CartSlice = createSlice({
         itemToUpdate.quantity = quantity; // If the item is found, update its quantity to the new value
       }
 
-
     },
   },
 });
 
+// This module intentionally exports Redux actions alongside its reducer.
+// eslint-disable-next-line react-refresh/only-export-components
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
 export default CartSlice.reducer;
